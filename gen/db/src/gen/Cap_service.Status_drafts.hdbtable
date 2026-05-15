@@ -1,0 +1,11 @@
+COLUMN TABLE Cap_service_Status_drafts (
+  ID NVARCHAR(36) NOT NULL,
+  statuscode NVARCHAR(2) NULL,
+  statusdes NVARCHAR(50) NULL,
+  status NVARCHAR(10) NULL,
+  IsActiveEntity BOOLEAN,
+  HasActiveEntity BOOLEAN,
+  HasDraftEntity BOOLEAN,
+  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  PRIMARY KEY(ID)
+)

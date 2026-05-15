@@ -1,0 +1,16 @@
+COLUMN TABLE poc_db_schema_EmployeeDetails (
+  ID NVARCHAR(36) NOT NULL,
+  DELETE BOOLEAN DEFAULT FALSE,
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  EmpID INTEGER,
+  FirstName NVARCHAR(50),
+  LastName NVARCHAR(50),
+  Age INTEGER,
+  Position NVARCHAR(50),
+  Email NVARCHAR(50),
+  status NVARCHAR(10),
+  PRIMARY KEY(ID)
+)

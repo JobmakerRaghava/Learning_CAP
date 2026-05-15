@@ -1,0 +1,15 @@
+COLUMN TABLE Cap_service_DepartmentSet_drafts (
+  ID NVARCHAR(36) NOT NULL,
+  DELETE BOOLEAN NULL DEFAULT FALSE,
+  createdAt TIMESTAMP NULL,
+  createdBy NVARCHAR(255) NULL,
+  modifiedAt TIMESTAMP NULL,
+  modifiedBy NVARCHAR(255) NULL,
+  to_emp_ID NVARCHAR(36) NULL,
+  Department NVARCHAR(100) NULL,
+  IsActiveEntity BOOLEAN,
+  HasActiveEntity BOOLEAN,
+  HasDraftEntity BOOLEAN,
+  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  PRIMARY KEY(ID)
+)

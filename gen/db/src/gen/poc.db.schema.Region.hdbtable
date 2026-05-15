@@ -1,0 +1,11 @@
+COLUMN TABLE poc_db_schema_Region (
+  ID NVARCHAR(36) NOT NULL,
+  DELETE BOOLEAN DEFAULT FALSE,
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  to_emp_ID NVARCHAR(36),
+  Region NVARCHAR(100),
+  PRIMARY KEY(ID)
+)

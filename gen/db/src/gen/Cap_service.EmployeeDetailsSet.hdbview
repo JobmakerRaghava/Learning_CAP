@@ -1,0 +1,15 @@
+VIEW Cap_service_EmployeeDetailsSet AS SELECT
+  EmployeeDetails_0.ID,
+  EmployeeDetails_0.DELETE,
+  EmployeeDetails_0.createdAt,
+  EmployeeDetails_0.createdBy,
+  EmployeeDetails_0.modifiedAt,
+  EmployeeDetails_0.modifiedBy,
+  EmployeeDetails_0.EmpID,
+  EmployeeDetails_0.FirstName,
+  EmployeeDetails_0.LastName,
+  EmployeeDetails_0.Age,
+  EmployeeDetails_0.Position,
+  EmployeeDetails_0.Email,
+  EmployeeDetails_0.status
+FROM poc_db_schema_EmployeeDetails AS EmployeeDetails_0
