@@ -1,11 +1,11 @@
-COLUMN TABLE poc_db_schema_Region (
+COLUMN TABLE poc_db_Department (
   ID NVARCHAR(36) NOT NULL,
-  DELETE BOOLEAN DEFAULT FALSE,
   createdAt TIMESTAMP,
   createdBy NVARCHAR(255),
   modifiedAt TIMESTAMP,
   modifiedBy NVARCHAR(255),
+  DELETE NVARCHAR(5000) DEFAULT 'X',
   to_emp_ID NVARCHAR(36),
-  Region NVARCHAR(100),
+  Department NVARCHAR(100),
   PRIMARY KEY(ID)
 )

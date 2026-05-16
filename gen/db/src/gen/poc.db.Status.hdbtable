@@ -1,4 +1,4 @@
-COLUMN TABLE poc_db_schema_Status (
+COLUMN TABLE poc_db_Status (
   ID NVARCHAR(36) NOT NULL,
   statuscode NVARCHAR(2),
   statusdes NVARCHAR(50),

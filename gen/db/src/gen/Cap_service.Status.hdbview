@@ -3,4 +3,4 @@ VIEW Cap_service_Status AS SELECT
   Status_0.statuscode,
   Status_0.statusdes,
   Status_0.status
-FROM poc_db_schema_Status AS Status_0
+FROM poc_db_Status AS Status_0

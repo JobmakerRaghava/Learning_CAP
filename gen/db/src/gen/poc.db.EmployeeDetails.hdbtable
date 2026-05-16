@@ -1,10 +1,10 @@
-COLUMN TABLE poc_db_schema_EmployeeDetails (
+COLUMN TABLE poc_db_EmployeeDetails (
   ID NVARCHAR(36) NOT NULL,
-  DELETE BOOLEAN DEFAULT FALSE,
   createdAt TIMESTAMP,
   createdBy NVARCHAR(255),
   modifiedAt TIMESTAMP,
   modifiedBy NVARCHAR(255),
+  DELETE NVARCHAR(5000) DEFAULT 'X',
   EmpID INTEGER,
   FirstName NVARCHAR(50),
   LastName NVARCHAR(50),
