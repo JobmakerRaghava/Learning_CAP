@@ -22,7 +22,7 @@ entity EmployeeDetails : cuid, managed, delete {
     to_region : Composition of many Region
                     on to_region.to_emp = $self;
     status    : String(10)
-    @title: 'Status';
+    @title: '{i18n>status}';
 }
 
 entity Department : cuid, managed, delete {
