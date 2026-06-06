@@ -14,15 +14,31 @@ const cds = require('@sap/cds');
 // })
 
 class Cap_service extends cds.ApplicationService {
-     init() {
+    init() {
         this.on('SumFunc', async (request, next) => {
             debugger;
             let { a, b } = request.data;
             return a + b;
         });
-        // this.on('READ', 'EmployeeDetailsSet',  (req) => {
+        // this.on('CREATE', 'EmployeeDetailsSet',async  (req) => {
         //     debugger;
+        //     var result = await cds.tx(req).run(SELECT.from('Cap_service.EmployeeDetailsSet').columns('max(EmpID) as count'));
+        //     var count = result[0].count;
+        //     req.data.EmpID = count + 1;
+        //     // return req;
         // });
+        //  this.after('CREATE', 'EmployeeDetailsSet', async req => {
+        //     debugger;
+
+        // });
+        //  this.before('CREATE', 'EmployeeDetailsSet',  (req) => {
+        //     debugger;
+
+        // });
+        this.after('READ', 'EmployeeDetailsSet', async (req) => {
+            debugger;
+        }
+        );
         return super.init();
     }
 }

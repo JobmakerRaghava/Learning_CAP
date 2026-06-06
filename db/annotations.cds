@@ -10,6 +10,7 @@ annotate Cap_service.EmployeeDetailsSet with
             $Type: 'UI.DataField',
             Value: EmpID,
             Label: 'Employee ID',
+         
 
 
         },
@@ -55,6 +56,7 @@ annotate Cap_service.EmployeeDetailsSet with
                 $Type: 'UI.DataField',
                 Value: EmpID,
                 Label: 'Employee ID',
+                @Common.FieldControl : #ReadOnly,
             },
             {
                 $Type: 'UI.DataField',
