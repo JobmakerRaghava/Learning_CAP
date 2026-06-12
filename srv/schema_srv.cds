@@ -19,9 +19,13 @@ service Cap_service {
     entity Status             as projection on schema.Status;
     
 }
-service ExternalService {
-    // @cds.autoexpose
-    entity BusinessPartner as projection on external.A_BusinessPartner;
+service ExternalServices {
+    @cds.autoexpose
+    @cds.persistence :{
+        table,
+        skip:false
+    }
+    entity BusinessPartnerSet as projection on external.A_BusinessPartner;
 
 
 }
