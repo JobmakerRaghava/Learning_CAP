@@ -15,7 +15,7 @@ const cds = require('@sap/cds');
 
 class Cap_service extends cds.ApplicationService {
     async init() {
-        const services = await cds.connect.to('API_BUSINESS_PARTNER');
+       
         this.on('SumFunc', async (request, next) => {
             debugger;
             let { a, b } = request.data;
@@ -58,4 +58,14 @@ class Cap_service extends cds.ApplicationService {
     }
 }
 
-module.exports = { Cap_service }
+class ExternalServices extends cds.ApplicationService {
+    async init() {
+        const services = await cds.connect.to('API_BUSINESS_PARTNER');
+        this.on('READ', 'BusinessPartnerSet', async (req) => {
+            debugger;
+            return services.run(req.query);
+        });
+        return super.init();
+    }
+}
+module.exports = { Cap_service, ExternalServices }

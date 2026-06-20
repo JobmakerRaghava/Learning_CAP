@@ -3,7 +3,9 @@ using {API_BUSINESS_PARTNER as external} from './external/API_BUSINESS_PARTNER';
 
 
 service Cap_service {
+
     @odata.draft.enabled
+   
     entity EmployeeDetailsSet as projection on schema.EmployeeDetails;
 
     @odata.draft.enabled

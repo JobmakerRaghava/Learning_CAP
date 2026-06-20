@@ -1,6 +1,8 @@
 namespace poc.db;
 
 using {poc.aspects.delete as delete} from './CustomAspects';
+using { API_BUSINESS_PARTNER as external } from '../srv/external/API_BUSINESS_PARTNER';
+
 
 using {
     cuid,
@@ -23,6 +25,7 @@ entity EmployeeDetails : cuid, managed, delete {
                     on to_region.to_emp = $self;
     status    : String(10)
     @title: '{i18n>status}';
+    Supplier: Composition of external.A_Supplier;
 }
 
 entity Department : cuid, managed, delete {
