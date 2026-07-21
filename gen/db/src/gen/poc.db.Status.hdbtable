@@ -1,7 +1,0 @@
-COLUMN TABLE poc_db_Status (
-  ID NVARCHAR(36) NOT NULL,
-  statuscode NVARCHAR(2),
-  statusdes NVARCHAR(50),
-  status NVARCHAR(10),
-  PRIMARY KEY(ID)
-)

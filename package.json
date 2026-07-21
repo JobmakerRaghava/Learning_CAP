@@ -1,23 +1,10 @@
 {
-<<<<<<< HEAD
-  "name": "Test",
-  "version": "1.0.0",
-  "dependencies": {
-    "@cap-js/hana": "^2",
-    "@sap-cloud-sdk/connectivity": "^4",
-    "@sap-cloud-sdk/http-client": "^4",
-    "@sap-cloud-sdk/resilience": "^4",
-    "@sap/cds": "^9",
-    "@sap/xssec": "^4",
-    "install": "^0.13.0"
-=======
   "name": "RAGS_E-to-E",
   "version": "1.0.0",
   "dependencies": {
     "@cap-js/hana": "^2",
     "@sap/cds": "^9",
     "@sap/xssec": "^4"
->>>>>>> b2f65e9 (21-7-26)
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2.4",
@@ -32,24 +19,7 @@
       "[production]": {
         "auth": "xsuaa"
       },
-<<<<<<< HEAD
-      "destinations": true,
-      "html5-repo": true,
-      "API_BUSINESS_PARTNER": {
-        "kind": "odata-v2",
-        "model": "srv/external/API_BUSINESS_PARTNER",
-        "[sandbox]": {
-          "credentials": {
-            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER",
-            "headers": {
-              "APIKey": "GeKZcfVpILEsEdIOPq3FlZaE4onURpay"
-            }
-          }
-        }
-      }
-=======
       "html5-repo": true
->>>>>>> b2f65e9 (21-7-26)
     }
   }
 }
