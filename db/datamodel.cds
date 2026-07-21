@@ -9,7 +9,14 @@ aspect delete {
         No = 'Y';
     } default 'X';
 }
+@title           : 'Stream Type'
+@Core.IsMediaType: true
+@Core.Computed   : true
+type MediaType : String;
 
+@title         : 'Stream Content'
+@Core.MediaType: 'application/octet-stream'
+type Stream    : LargeBinary;
 
 
 context datamodel {
@@ -55,4 +62,36 @@ context datamodel {
         fileContent : LargeBinary;
 
     };
+     entity Attachment : cuid,managed, delete {
+       
+
+            @Core.MediaType                  : file_type
+            // @Core.AcceptableMediaTypes       : [
+            //   'image/jpg',
+            //   'image/jpeg',
+            //   'image/png'
+            // ]
+            @Core.ContentDisposition.Filename: file_name
+            @title                           : 'Attachment'
+            file      : Stream;
+            file_name : String(120) @changelog;
+
+            @title                           : 'Attachment Type'
+            file_type : MediaType; // string
+
+            @readonly
+            @title                           : 'Uploaded by'
+            @cds.on.insert                   : $user
+            uploaded_by : String(120);
+
+            @readonly
+            @title                           : 'Uploaded on'
+            @cds.on.insert                   : $now
+            uploaded_on : DateTime;
+
+            @title                           : 'Note'
+            note      : String(120);
+
+
+    }
 }

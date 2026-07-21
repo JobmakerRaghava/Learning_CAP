@@ -57,21 +57,7 @@ modules:
           app-protocol: ${protocol}
           app-uri: ${default-uri}
 
-  - name: RAGS_E-to-E-app-deployer
-    type: com.sap.application.content
-    path: gen
-    build-parameters:
-      build-result: app/
-      requires:
-    requires:
-      - name: RAGS_E-to-E-auth
-      - name: srv-api
-      - name: RAGS_E-to-E-html5-repo-host
-        parameters:
-          content-target: true
-          config:
-            HTML5Runtime_enabled: true
-
+  
 resources:
   - name: RAGS_E-to-E-auth
     type: org.cloudfoundry.managed-service

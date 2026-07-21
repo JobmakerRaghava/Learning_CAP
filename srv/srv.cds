@@ -21,5 +21,11 @@ service RAGS {
   
 
     entity FileDB as projection on datamodel.FilesDB;
+       entity Attachments @(odata.draft.enabled: true) as
+        projection on datamodel.Attachment {
+            *
+        }
+        where
+            DELETE = 'Y';
 
 }
