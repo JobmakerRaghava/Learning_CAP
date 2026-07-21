@@ -1,5 +1,9 @@
 _schema-version: 3.3.0
+<<<<<<< HEAD
 ID: Test
+=======
+ID: RAGS_E-to-E
+>>>>>>> b2f65e9 (21-7-26)
 version: 1.0.0
 description: "A simple CAP project."
 parameters:
@@ -12,7 +16,11 @@ build-parameters:
         - npm ci
         - npx cds build --production
 modules:
+<<<<<<< HEAD
   - name: Test-srv
+=======
+  - name: RAGS_E-to-E-srv
+>>>>>>> b2f65e9 (21-7-26)
     type: nodejs
     path: gen/srv
     parameters:
@@ -25,18 +33,30 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
+<<<<<<< HEAD
       - name: Test-auth
       - name: Test-db
       - name: Test-destination
 
   - name: Test-db-deployer
+=======
+      - name: RAGS_E-to-E-auth
+      - name: RAGS_E-to-E-db
+
+  - name: RAGS_E-to-E-db-deployer
+>>>>>>> b2f65e9 (21-7-26)
     type: hdb
     path: gen/db
     parameters:
       buildpack: nodejs_buildpack
     requires:
+<<<<<<< HEAD
       - name: Test-db
   - name: Test
+=======
+      - name: RAGS_E-to-E-db
+  - name: RAGS_E-to-E
+>>>>>>> b2f65e9 (21-7-26)
     type: approuter.nodejs
     path: app/router
     parameters:
@@ -50,39 +70,62 @@ modules:
           name: srv-api # must be used in xs-app.json as well
           url: ~{srv-url}
           forwardAuthToken: true
+<<<<<<< HEAD
       - name: Test-auth
       - name: Test-destination
       - name: Test-html5-runtime
+=======
+      - name: RAGS_E-to-E-auth
+      - name: RAGS_E-to-E-html5-runtime
+>>>>>>> b2f65e9 (21-7-26)
     provides:
       - name: app-api
         properties:
           app-protocol: ${protocol}
           app-uri: ${default-uri}
 
+<<<<<<< HEAD
   - name: Test-app-deployer
+=======
+  - name: RAGS_E-to-E-app-deployer
+>>>>>>> b2f65e9 (21-7-26)
     type: com.sap.application.content
     path: gen
     build-parameters:
       build-result: app/
       requires:
     requires:
+<<<<<<< HEAD
       - name: Test-auth
       - name: srv-api
       - name: Test-html5-repo-host
+=======
+      - name: RAGS_E-to-E-auth
+      - name: srv-api
+      - name: RAGS_E-to-E-html5-repo-host
+>>>>>>> b2f65e9 (21-7-26)
         parameters:
           content-target: true
           config:
             HTML5Runtime_enabled: true
 
 resources:
+<<<<<<< HEAD
   - name: Test-auth
+=======
+  - name: RAGS_E-to-E-auth
+>>>>>>> b2f65e9 (21-7-26)
     type: org.cloudfoundry.managed-service
     parameters:
       service: xsuaa
       service-plan: application
       path: ./xs-security.json
       config:
+<<<<<<< HEAD
         xsappname: Test-${org}-${space}
+=======
+        xsappname: RAGS_E-to-E-${org}-${space}
+>>>>>>> b2f65e9 (21-7-26)
         tenant-mode: dedicated
         oauth2-configuration:
           credential-types:
@@ -92,11 +135,16 @@ resources:
             - https://*~{app-api/app-uri}/**
     requires:
       - name: app-api
+<<<<<<< HEAD
   - name: Test-db
+=======
+  - name: RAGS_E-to-E-db
+>>>>>>> b2f65e9 (21-7-26)
     type: com.sap.xs.hdi-container
     parameters:
       service: hana
       service-plan: hdi-shared
+<<<<<<< HEAD
   - name: Test-destination
     type: org.cloudfoundry.managed-service
     parameters:
@@ -104,11 +152,19 @@ resources:
       service-plan: lite
 
   - name: Test-html5-repo-host
+=======
+
+  - name: RAGS_E-to-E-html5-repo-host
+>>>>>>> b2f65e9 (21-7-26)
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo
       service-plan: app-host
+<<<<<<< HEAD
   - name: Test-html5-runtime
+=======
+  - name: RAGS_E-to-E-html5-runtime
+>>>>>>> b2f65e9 (21-7-26)
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo

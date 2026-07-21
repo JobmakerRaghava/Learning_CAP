@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "Test",
   "version": "1.0.0",
   "dependencies": {
@@ -9,6 +10,14 @@
     "@sap/cds": "^9",
     "@sap/xssec": "^4",
     "install": "^0.13.0"
+=======
+  "name": "RAGS_E-to-E",
+  "version": "1.0.0",
+  "dependencies": {
+    "@cap-js/hana": "^2",
+    "@sap/cds": "^9",
+    "@sap/xssec": "^4"
+>>>>>>> b2f65e9 (21-7-26)
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2.4",
@@ -23,6 +32,7 @@
       "[production]": {
         "auth": "xsuaa"
       },
+<<<<<<< HEAD
       "destinations": true,
       "html5-repo": true,
       "API_BUSINESS_PARTNER": {
@@ -37,6 +47,9 @@
           }
         }
       }
+=======
+      "html5-repo": true
+>>>>>>> b2f65e9 (21-7-26)
     }
   }
 }
