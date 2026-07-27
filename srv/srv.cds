@@ -18,14 +18,12 @@ service RAGS {
     @odata.draft.enabled
     entity Status             as projection on datamodel.Status;
 
-  
+    entity Attachments        as projection on datamodel.Attachments;
 
-    entity FileDB as projection on datamodel.FilesDB;
-       entity Attachments @(odata.draft.enabled: true) as
-        projection on datamodel.Attachment {
-            *
-        }
-        where
-            DELETE = 'Y';
+    action   uploadFile(fileName: String,
+                        mimeType: String,
+                        fileSize: Integer,
+                        content: LargeString);
+
 
 }

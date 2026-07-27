@@ -2,7 +2,7 @@ const cds = require('@sap/cds');
 
 class RAGS extends cds.ApplicationService {
     async init() {
-        // const { RAGS } = this.entities;
+        const { Attachments } = this.entities;
         this.on('SumFunc', async (request, next) => {
             debugger;
             let { a, b } = request.data;
@@ -40,6 +40,27 @@ class RAGS extends cds.ApplicationService {
         });
 
 
+        this.on('uploadFile', async (req) => {
+            debugger;
+            const {
+                fileName,
+                mimeType,
+                fileSize,
+                content
+            } = req.data;
+
+            const result = await INSERT.into(Attachments).entries({
+                ID: cds.utils.uuid(),
+                fileName,
+                mimeType,
+                fileSize,
+                content: Buffer.from(content, 'base64'),
+                createdAt: new Date()
+            });
+
+            return result;
+        });
+      
 
         return super.init();
     }
