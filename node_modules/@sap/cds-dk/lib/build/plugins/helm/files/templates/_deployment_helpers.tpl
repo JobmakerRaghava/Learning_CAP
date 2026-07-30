@@ -88,6 +88,8 @@ Backend Destinations
     {{- end -}}
     {{- $currentDestination := dict $nameKey $destination.name $urlKey (print  $protocol "://" $destinationHost ) -}}
     {{- $currentDestination := merge $currentDestination $.defaultParameters -}}
+    {{- $extras := omit $destination "name" "service" "external" -}}
+    {{- $currentDestination := merge $extras $currentDestination -}}
     {{- $destinations = (append $destinations $currentDestination) -}}
 {{- end -}}
 {{- $destinations | toJson }}

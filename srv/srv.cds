@@ -1,8 +1,11 @@
 using {datamodel} from '../db/datamodel';
 
-
 service RAGS {
 
+    @restrict: [{
+        grant: 'READ',
+        to   : 'Admin'
+    }]
     @odata.draft.enabled
     entity EmployeeDetailsSet as projection on datamodel.EmployeeDetails;
 

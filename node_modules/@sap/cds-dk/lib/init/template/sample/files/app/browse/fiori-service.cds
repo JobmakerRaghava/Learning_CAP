@@ -27,6 +27,7 @@ annotate CatalogService.Books with @(UI : {
       Value : currency.symbol,
       Label : '{i18n>Currency}'
     },
+    {Value : stock},
   ]},
 });
 
@@ -53,5 +54,6 @@ annotate CatalogService.Books with @(UI : {
     {Value : genre.name},
     {Value : price},
     {Value : currency.symbol},
+    {Value : stock},
   ]
 });
