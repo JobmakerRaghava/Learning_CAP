@@ -26,6 +26,7 @@
       "[production]": {
         "auth": "xsuaa"
       },
+      "auth": "xsuaa",
       "html5-repo": true
     }
   },

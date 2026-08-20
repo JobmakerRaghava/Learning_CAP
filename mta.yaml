@@ -3,136 +3,118 @@ ID: RAGS_E-to-E
 description: A simple CAP project.
 version: 1.0.0
 modules:
-- name: RAGS_E-to-E-srv
-  type: nodejs
-  path: gen/srv
-  requires:
-  - name: RAGS_E-to-E-auth
-  - name: RAGS_E-to-E-db
-  provides:
-  - name: srv-api
-    properties:
-      srv-url: ${default-url}
-  parameters:
-    buildpack: nodejs_buildpack
-    instances: 1
-  build-parameters:
-    builder: npm-ci
-- name: RAGS_E-to-E-db-deployer
-  type: hdb
-  path: gen/db
-  requires:
-  - name: RAGS_E-to-E-db
-  parameters:
-    buildpack: nodejs_buildpack
-- name: RAGS_E-to-E
-  type: approuter.nodejs
-  path: app/router
-  requires:
-  - name: srv-api
-    group: destinations
-    properties:
-      forwardAuthToken: true
-      name: srv-api
-      url: ~{srv-url}
-  - name: RAGS_E-to-E-auth
-  - name: RAGS_E-to-E-html5-runtime
-  - name: RAGS_E-to-E-destination-service
-    group: destinations
-    properties:
-      forwardAuthToken: false
-      name: ui5
-      url: https://ui5.sap.com
-  provides:
-  - name: app-api
-    properties:
-      app-protocol: ${protocol}
-      app-uri: ${default-uri}
-  parameters:
-    disk-quota: 256M
-    keep-existing-routes: true
-    memory: 256M
-- name: RAGS_E-to-E-app-content
-  type: com.sap.application.content
-  path: .
-  requires:
-  - name: RAGS_E-to-E-html5-repo-host
-    parameters:
-      content-target: true
-  build-parameters:
-    build-result: resources
+  - name: RAGS_E-to-E-srv
+    type: nodejs
+    path: gen/srv
     requires:
-    - artifacts:
-      - attachment.zip
-      name: attachment
-      target-path: resources/
-- name: attachment
-  type: html5
-  path: app/attachment
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
+      - name: RAGS_E-to-E-auth
+      - name: RAGS_E-to-E-db
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    parameters:
+      buildpack: nodejs_buildpack
+      instances: 1
+    build-parameters:
+      builder: npm-ci
+  - name: RAGS_E-to-E-db-deployer
+    type: hdb
+    path: gen/db
+    requires:
+      - name: RAGS_E-to-E-db
+    parameters:
+      buildpack: nodejs_buildpack
+  - name: RAGS_E-to-E
+    type: approuter.nodejs
+    path: app/router
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          forwardAuthToken: true
+          name: srv-api
+          url: ~{srv-url}
+      - name: RAGS_E-to-E-auth
+      - name: RAGS_E-to-E-html5-runtime
+      - name: RAGS_E-to-E-destination-service
+        group: destinations
+        properties:
+          forwardAuthToken: false
+          name: ui5
+          url: https://ui5.sap.com
+    provides:
+      - name: app-api
+        properties:
+          app-protocol: ${protocol}
+          app-uri: ${default-uri}
+    parameters:
+      disk-quota: 256M
+      keep-existing-routes: true
+      memory: 256M
+  
 resources:
-- name: RAGS_E-to-E-auth
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      oauth2-configuration:
-        credential-types:
-        - binding-secret
-        - x509
-        redirect-uris:
-        - https://*~{app-api/app-uri}/**
-      tenant-mode: dedicated
-      xsappname: RAGS_E-to-E-${org}-${space}
-    path: ./xs-security.json
-    service: xsuaa
-    service-plan: application
-  requires:
-  - name: app-api
-- name: RAGS_E-to-E-db
-  type: com.sap.xs.hdi-container
-  parameters:
-    service: hana
-    service-plan: hdi-shared
-- name: RAGS_E-to-E-html5-repo-host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-plan: app-host
-- name: RAGS_E-to-E-html5-runtime
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-plan: app-runtime
-- name: RAGS_E-to-E-destination-service
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      HTML5Runtime_enabled: false
-      init_data:
-        instance:
-          destinations:
-          - Authentication: NoAuthentication
-            Name: ui5
-            ProxyType: Internet
-            Type: HTTP
-            URL: https://ui5.sap.com
-          existing_destinations_policy: update
-      version: 1.0.0
-    service: destination
-    service-name: RAGS_E-to-E-destination-service
-    service-plan: lite
+  - name: RAGS_E-to-E-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        oauth2-configuration:
+          credential-types:
+            - binding-secret
+            - x509
+          redirect-uris:
+            - https://*~{app-api/app-uri}/**
+        tenant-mode: dedicated
+        xsappname: RAGS_E-to-E-${org}-${space}
+        role-collections:
+          - name: 'Admin (RAGS_E-to-E ${org}-${space})'
+            description: 'generated'
+            role-template-references:
+              - '$XSAPPNAME.Admin'
+      path: ./xs-security.json
+      service: xsuaa
+      service-plan: application
+    requires:
+      - name: app-api
+  - name: RAGS_E-to-E-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: RAGS_E-to-E-html5-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+  - name: RAGS_E-to-E-html5-runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
+  - name: RAGS_E-to-E-destination-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: false
+        init_data:
+          instance:
+            destinations:
+              - Authentication: NoAuthentication
+                Name: ui5
+                ProxyType: Internet
+                Type: HTTP
+                URL: https://ui5.sap.com
+            existing_destinations_policy: update
+        version: 1.0.0
+      service: destination
+      service-name: RAGS_E-to-E-destination-service
+      service-plan: lite
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-  - builder: custom
-    commands:
-    - npm ci
-    - npx cds build --production
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
