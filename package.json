@@ -22,6 +22,12 @@
   },
   "private": true,
   "cds": {
+    "[development]": {
+      "requires": {
+        "auth": "xsuaa",
+        "html5-repo": true
+      }
+    },
     "requires": {
       "auth": "xsuaa",
       "html5-repo": true
