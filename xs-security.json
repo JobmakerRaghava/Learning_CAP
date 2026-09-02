@@ -1,25 +1,19 @@
 {
- "scopes": [
-  {
-   "name": "$XSAPPNAME.Admin",
-   "description": "Admin"
-  }
- ],
- "attributes": [],
- "role-templates": [
-  {
-   "name": "Admin",
-   "description": "generated",
-   "scope-references": [
-    "$XSAPPNAME.Admin"
-   ],
-   "attribute-references": []
-  }
- ],
- "oauth2-configuration": {
-  "token-validity": 3600,
-  "redirect-uris": [
-   "https://*.cfapps.*.hana.ondemand.com/login/callback"
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.AdminRole",
+      "description": "AdminRole"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "AdminRole",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.AdminRole"
+      ],
+      "attribute-references": []
+    }
   ]
- }
 }
