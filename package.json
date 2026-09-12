@@ -4,7 +4,8 @@
   "dependencies": {
     "@cap-js/hana": "^2",
     "@sap/cds": "^10.0.5",
-    "@sap/xssec": "^4"
+    "@sap/xssec": "^4",
+    "sap-cf-mailer": "^0.0.5"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2.4",
@@ -24,13 +25,18 @@
   "cds": {
     "[development]": {
       "requires": {
-        "auth": "xsuaa",
+        "auth": "mocked",
         "html5-repo": true
       }
     },
     "requires": {
       "auth": "xsuaa",
       "html5-repo": true
+    },
+    "log": {
+      "levels": {
+        "auth": "debug"
+      }
     }
   },
   "workspaces": [

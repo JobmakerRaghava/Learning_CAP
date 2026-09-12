@@ -2,10 +2,10 @@ using {datamodel} from '../db/datamodel';
 
 service RAGS {
 
-    @restrict: [{
-        grant: '*',
-        to   : 'AdminRole'
-    }]
+    // @restrict: [{
+    //     grant: '*',
+    //     to   : 'AdminRole'
+    // }]
     @odata.draft.enabled
     entity EmployeeDetailsSet as projection on datamodel.EmployeeDetails;
 
@@ -27,6 +27,7 @@ service RAGS {
                         mimeType: String,
                         fileSize: Integer,
                         content: LargeString);
+                           function sendMail() returns String; 
 
 
 }
