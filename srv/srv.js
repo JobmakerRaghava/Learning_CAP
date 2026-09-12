@@ -65,7 +65,8 @@ class RAGS extends cds.ApplicationService {
 
             try {
 
-                const transporter = new SapCfMailer("GmailSMTP"); // Match your destination
+                // const transporter = new SapCfMailer("GmailSMTP"); // Match your destination
+                 const transporter = await cds.connect.to('GmailSMTP');
 
                 const result = await transporter.sendMail({
 
