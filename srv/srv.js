@@ -69,7 +69,7 @@ class RAGS extends cds.ApplicationService {
 
                 const result = await transporter.sendMail({
 
-                    to: "raghavakolanu123@gmail.com", //to list separated by comma
+                    to: "raghavakolanu123@gmail.com", 
 
                     // cc: "", //cc list separated by comma
 
