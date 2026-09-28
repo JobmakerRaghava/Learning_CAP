@@ -27,7 +27,7 @@ service RAGS {
                         mimeType: String,
                         fileSize: Integer,
                         content: LargeString);
-                           function sendMail() returns String; 
+function sendMail() returns String; 
 
 
 }

@@ -1,5 +1,6 @@
 const cds = require('@sap/cds');
 const SapCfMailer = require("sap-cf-mailer").default;
+const nodemailer = require('nodemailer');
 class RAGS extends cds.ApplicationService {
     async init() {
         const { Attachments } = this.entities;
@@ -63,10 +64,19 @@ class RAGS extends cds.ApplicationService {
 
         this.on('sendMail', async () => {
 
+// const transporter = nodemailer.createTransport({
+//         host: "://example.com", 
+//         port: 587,
+//         secure: false, // true for port 465, false for other ports
+//         auth: {
+//             user: "your-email@example.com", 
+//             pass: "your-smtp-password"      
+//         }
+//     });
             try {
 
-                // const transporter = new SapCfMailer("GmailSMTP"); // Match your destination
-                 const transporter = await cds.connect.to('GmailSMTP');
+                const transporter = new SapCfMailer("GmailSMTP"); // Match your destination
+                //  const transporter = await cds.connect.to('GmailSMTP');
 
                 const result = await transporter.sendMail({
 
